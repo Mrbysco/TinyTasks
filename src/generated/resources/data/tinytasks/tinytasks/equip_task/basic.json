@@ -1,0 +1,18 @@
+{
+  "items": [
+    "minecraft:leather_boots",
+    "minecraft:leather_leggings",
+    "minecraft:leather_chestplate",
+    "minecraft:leather_helmet",
+    "minecraft:iron_boots",
+    "minecraft:iron_leggings",
+    "minecraft:iron_chestplate",
+    "minecraft:iron_helmet",
+    "minecraft:golden_boots",
+    "minecraft:golden_leggings",
+    "minecraft:golden_chestplate",
+    "minecraft:golden_helmet",
+    "minecraft:carved_pumpkin"
+  ],
+  "weight": 10
+}

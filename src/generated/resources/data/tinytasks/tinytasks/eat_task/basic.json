@@ -1,0 +1,30 @@
+{
+  "items": [
+    "minecraft:apple",
+    "minecraft:melon_slice",
+    "minecraft:potato",
+    "minecraft:baked_potato",
+    "minecraft:carrot",
+    "minecraft:bread",
+    "minecraft:beef",
+    "minecraft:mutton",
+    "minecraft:chicken",
+    "minecraft:cod",
+    "minecraft:salmon",
+    "minecraft:porkchop",
+    "minecraft:cooked_beef",
+    "minecraft:cooked_mutton",
+    "minecraft:cooked_chicken",
+    "minecraft:cooked_cod",
+    "minecraft:cooked_salmon",
+    "minecraft:cooked_porkchop",
+    "minecraft:cooked_rabbit",
+    "minecraft:pumpkin_pie",
+    "minecraft:beetroot",
+    "minecraft:beetroot_soup",
+    "minecraft:mushroom_stew",
+    "minecraft:honey_bottle",
+    "minecraft:suspicious_stew"
+  ],
+  "weight": 10
+}

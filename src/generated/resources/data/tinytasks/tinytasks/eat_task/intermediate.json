@@ -1,0 +1,11 @@
+{
+  "items": [
+    "minecraft:rabbit",
+    "minecraft:cooked_rabbit",
+    "minecraft:rabbit_stew",
+    "minecraft:golden_carrot",
+    "minecraft:golden_apple",
+    "minecraft:pufferfish"
+  ],
+  "weight": 5
+}

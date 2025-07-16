@@ -1,0 +1,9 @@
+// 1.21.1	2025-06-04T22:47:21.9816911	Task Provider: tinytasks
+640e653c9a25572ab4f966d9a463b743588be66b data/tinytasks/tinytasks/craft_task/basic.json
+c7f309ae9c8e7de18153c440aa54d4e3b87e2c23 data/tinytasks/tinytasks/craft_task/intermediate.json
+9fbcb371ed4e2057e9a215a6d8b9e7fdfdb04ee7 data/tinytasks/tinytasks/eat_task/basic.json
+d7d4f1fd4b60008a69325ea59286b1e7662b6794 data/tinytasks/tinytasks/eat_task/intermediate.json
+514fa60b2f112f5e4c91a17497fbbf308b1d2573 data/tinytasks/tinytasks/equip_task/basic.json
+ef8a484020612b7f824c9a75ffdeea5d2658270e data/tinytasks/tinytasks/equip_task/intermediate.json
+f4bb857b5d91fb5a0c7cd6d9bfc09208fa83797c data/tinytasks/tinytasks/pick_up_task/basic.json
+7f8cd55197f125a10f8bd42c54c57bd61dc36dd4 data/tinytasks/tinytasks/pick_up_task/intermediate.json

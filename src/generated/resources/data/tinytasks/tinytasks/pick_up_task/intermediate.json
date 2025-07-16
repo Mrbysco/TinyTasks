@@ -1,0 +1,22 @@
+{
+  "items": [
+    "minecraft:stone",
+    "minecraft:raw_iron",
+    "minecraft:raw_gold",
+    "minecraft:redstone",
+    "minecraft:lapis_lazuli",
+    "minecraft:emerald",
+    "minecraft:netherrack",
+    "minecraft:soul_sand",
+    "minecraft:soul_soil",
+    "minecraft:basalt",
+    "minecraft:blackstone",
+    "minecraft:deepslate",
+    "minecraft:sunflower",
+    "minecraft:lilac",
+    "minecraft:rose_bush",
+    "minecraft:peony",
+    "minecraft:rabbit"
+  ],
+  "weight": 5
+}

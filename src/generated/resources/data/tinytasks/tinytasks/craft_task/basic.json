@@ -1,0 +1,20 @@
+{
+  "items": [
+    "minecraft:crafting_table",
+    "minecraft:furnace",
+    "minecraft:chest",
+    "minecraft:minecart",
+    "minecraft:bucket",
+    "minecraft:smoker",
+    "minecraft:campfire",
+    "minecraft:oak_planks",
+    "minecraft:spruce_planks",
+    "minecraft:birch_planks",
+    "minecraft:jungle_planks",
+    "minecraft:acacia_planks",
+    "minecraft:cherry_planks",
+    "minecraft:dark_oak_planks",
+    "minecraft:mangrove_planks"
+  ],
+  "weight": 10
+}

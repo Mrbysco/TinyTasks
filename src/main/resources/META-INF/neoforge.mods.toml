@@ -1,0 +1,29 @@
+modLoader="javafml"
+loaderVersion="[4,)"
+issueTrackerURL="https://github.com/Mrbysco/TinyTasks/issues"
+license="MIT"
+
+[[mods]]
+modId="tinytasks"
+version="${file.jarVersion}"
+displayName="Tiny Tasks"
+displayURL="https://www.curseforge.com/minecraft/mc-mods/tiny-tasks"
+authors="Mrbysco, ShyNieke"
+credits="ScopiWolf for task ideas"
+description='''
+Adds a fun task system with a leaderboard
+'''
+[[dependencies.tinytasks]]
+modId="minecraft"
+type="required"
+versionRange="[1.21,1.22)"
+ordering="NONE"
+side="BOTH"
+[[dependencies.tinytasks]]
+modId="neoforge"
+type="required"
+versionRange="[21.1.1,)"
+ordering="NONE"
+side="BOTH"
+[[mixins]]
+config="tinytasks.mixins.json"
