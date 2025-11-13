@@ -22,6 +22,7 @@ public class TaskRegistry {
 
 	/**
 	 * Returns an unmodifiable list of all tasks in the registry.
+	 *
 	 * @return An unmodifiable list of tasks.
 	 */
 	public static List<Task> getTasks() {
@@ -39,6 +40,7 @@ public class TaskRegistry {
 
 	/**
 	 * Called when the server has started, used to reload tasks from the registries.
+	 *
 	 * @param event The server started event.
 	 */
 	public static void onServerStarted(ServerStartedEvent event) {
@@ -55,37 +57,37 @@ public class TaskRegistry {
 	private static void reloadTasks(RegistryAccess registryAccess) {
 		tasks.clear();
 
-		final Registry<CraftTask> craftTaskRegistry = registryAccess.registryOrThrow(CraftTask.REGISTRY_KEY);
+		final Registry<CraftTask> craftTaskRegistry = registryAccess.lookupOrThrow(CraftTask.REGISTRY_KEY);
 		List<CraftTask> craftTasks = new ArrayList<>();
 		craftTaskRegistry.entrySet().forEach((key) -> craftTasks.add(key.getValue()));
 		tasks.addAll(craftTasks);
 		TinyTasksMod.LOGGER.info("Loaded {} craft tasks", craftTasks.size());
 
-		final Registry<EatTask> eatTaskRegistry = registryAccess.registryOrThrow(EatTask.REGISTRY_KEY);
+		final Registry<EatTask> eatTaskRegistry = registryAccess.lookupOrThrow(EatTask.REGISTRY_KEY);
 		List<EatTask> eatTasks = new ArrayList<>();
 		eatTaskRegistry.entrySet().forEach((key) -> eatTasks.add(key.getValue()));
 		tasks.addAll(eatTasks);
 		TinyTasksMod.LOGGER.info("Loaded {} eat tasks", eatTasks.size());
 
-		final Registry<EquipTask> equipTaskRegistry = registryAccess.registryOrThrow(EquipTask.REGISTRY_KEY);
+		final Registry<EquipTask> equipTaskRegistry = registryAccess.lookupOrThrow(EquipTask.REGISTRY_KEY);
 		List<EquipTask> equipTasks = new ArrayList<>();
 		equipTaskRegistry.entrySet().forEach((key) -> equipTasks.add(key.getValue()));
 		tasks.addAll(equipTasks);
 		TinyTasksMod.LOGGER.info("Loaded {} equip tasks", equipTasks.size());
 
-		final Registry<MineTask> mineTaskRegistry = registryAccess.registryOrThrow(MineTask.REGISTRY_KEY);
+		final Registry<MineTask> mineTaskRegistry = registryAccess.lookupOrThrow(MineTask.REGISTRY_KEY);
 		List<MineTask> mineTasks = new ArrayList<>();
 		mineTaskRegistry.entrySet().forEach((key) -> mineTasks.add(key.getValue()));
 		tasks.addAll(mineTasks);
 		TinyTasksMod.LOGGER.info("Loaded {} mine tasks", mineTasks.size());
 
-		final Registry<PickUpTask> pickUpTaskRegistry = registryAccess.registryOrThrow(PickUpTask.REGISTRY_KEY);
+		final Registry<PickUpTask> pickUpTaskRegistry = registryAccess.lookupOrThrow(PickUpTask.REGISTRY_KEY);
 		List<PickUpTask> pickUpTasks = new ArrayList<>();
 		pickUpTaskRegistry.entrySet().forEach((key) -> pickUpTasks.add(key.getValue()));
 		tasks.addAll(pickUpTasks);
 		TinyTasksMod.LOGGER.info("Loaded {} pick up tasks", pickUpTasks.size());
 
-		final Registry<UseTask> useTaskRegistry = registryAccess.registryOrThrow(UseTask.REGISTRY_KEY);
+		final Registry<UseTask> useTaskRegistry = registryAccess.lookupOrThrow(UseTask.REGISTRY_KEY);
 		List<UseTask> useTasks = new ArrayList<>();
 		useTaskRegistry.entrySet().forEach((key) -> useTasks.add(key.getValue()));
 		tasks.addAll(useTasks);
@@ -99,6 +101,7 @@ public class TaskRegistry {
 
 	/**
 	 * Returns a random task from the registry based on their weights.
+	 *
 	 * @return A random task from the registry.
 	 */
 	@NotNull

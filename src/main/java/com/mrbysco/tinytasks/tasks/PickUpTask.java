@@ -5,9 +5,9 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.mrbysco.tinytasks.TinyTasksMod;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ItemLike;
 import net.neoforged.neoforge.common.conditions.ConditionalOps;
 import net.neoforged.neoforge.common.conditions.WithConditions;
@@ -22,7 +22,7 @@ public class PickUpTask extends AbstractItemTask {
 
 	public static final Codec<PickUpTask> CODEC = RecordCodecBuilder.create(
 			instance -> instance.group(
-					ItemStack.ITEM_NON_AIR_CODEC.listOf().fieldOf("items").forGetter(PickUpTask::items),
+					Item.CODEC.listOf().fieldOf("items").forGetter(PickUpTask::items),
 					Codec.intRange(1, 100).fieldOf("weight").forGetter(PickUpTask::weight)
 			).apply(instance, PickUpTask::new)
 	);
@@ -41,7 +41,7 @@ public class PickUpTask extends AbstractItemTask {
 		if (chosenItem() == null) {
 			throw new IllegalStateException("No item selected for Pick Up Task");
 		}
-		return String.format("Pick Up 1 §6%s§r", chosenItem().getDescription().getString());
+		return String.format("Pick Up 1 §6%s§r", Component.translatable(chosenItem().getDescriptionId()).getString());
 	}
 
 	@Override

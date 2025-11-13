@@ -1,6 +1,7 @@
 package com.mrbysco.tinytasks.handler;
 
 import com.mrbysco.tinytasks.TaskRegistry;
+import com.mrbysco.tinytasks.TinyTasksMod;
 import com.mrbysco.tinytasks.data.LeaderboardData;
 import com.mrbysco.tinytasks.tasks.CraftTask;
 import com.mrbysco.tinytasks.tasks.EatTask;
@@ -12,7 +13,6 @@ import com.mrbysco.tinytasks.tasks.UseTask;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.HoverEvent;
-import net.minecraft.network.chat.HoverEvent.Action;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
@@ -81,7 +81,7 @@ public class TaskHandler {
 	public static void onCrafted(ItemCraftedEvent event) {
 		Player player = event.getEntity();
 		Level level = player.level();
-		if (!level.isClientSide && currentTask instanceof CraftTask craftTask) {
+		if (!level.isClientSide() && currentTask instanceof CraftTask craftTask && !completedPlayers.contains(player.getUUID())) {
 			ItemStack stack = event.getCrafting();
 			if (craftTask.matches(stack)) {
 				userCompletedTask((ServerLevel) level, player);
@@ -90,10 +90,10 @@ public class TaskHandler {
 	}
 
 	@SubscribeEvent
-	public static void onPickup(ItemEntityPickupEvent.Post event) {
+	public static void onPickup(ItemEntityPickupEvent.Pre event) {
 		Player player = event.getPlayer();
 		Level level = player.level();
-		if (!level.isClientSide && currentTask instanceof PickUpTask pickUpTask) {
+		if (!level.isClientSide() && currentTask instanceof PickUpTask pickUpTask && !completedPlayers.contains(player.getUUID())) {
 			ItemStack stack = event.getItemEntity().getItem();
 			if (pickUpTask.matches(stack)) {
 				userCompletedTask((ServerLevel) level, player);
@@ -105,7 +105,7 @@ public class TaskHandler {
 	public static void onEquip(LivingEquipmentChangeEvent event) {
 		LivingEntity livingEntity = event.getEntity();
 		Level level = livingEntity.level();
-		if (!level.isClientSide && livingEntity instanceof Player player && currentTask instanceof EquipTask equipTask) {
+		if (!level.isClientSide() && livingEntity instanceof Player player && currentTask instanceof EquipTask equipTask && !completedPlayers.contains(player.getUUID())) {
 			ItemStack stack = event.getTo();
 			if (equipTask.matches(stack)) {
 				userCompletedTask((ServerLevel) level, player);
@@ -117,7 +117,7 @@ public class TaskHandler {
 	public static void onUse(LivingEntityUseItemEvent event) {
 		LivingEntity livingEntity = event.getEntity();
 		Level level = livingEntity.level();
-		if (!level.isClientSide && livingEntity instanceof Player player && currentTask instanceof UseTask useTask) {
+		if (!level.isClientSide() && livingEntity instanceof Player player && currentTask instanceof UseTask useTask) {
 			ItemStack stack = event.getItem();
 			if (useTask.matches(stack)) {
 				userCompletedTask((ServerLevel) level, player);
@@ -129,7 +129,7 @@ public class TaskHandler {
 	public static void onUse(BreakEvent event) {
 		Player player = event.getPlayer();
 		Level level = player.level();
-		if (!level.isClientSide && currentTask instanceof MineTask mineTask) {
+		if (!level.isClientSide() && currentTask instanceof MineTask mineTask && !completedPlayers.contains(player.getUUID())) {
 			if (mineTask.matches(event.getState().getBlock().asItem().getDefaultInstance())) {
 				userCompletedTask((ServerLevel) level, player);
 			}
@@ -138,12 +138,13 @@ public class TaskHandler {
 
 	/**
 	 * Handles the event when a player eats an item.
+	 *
 	 * @param livingEntity the entity that ate the item
-	 * @param stack the item stack that was eaten
+	 * @param stack        the item stack that was eaten
 	 */
 	public static void onEat(LivingEntity livingEntity, ItemStack stack) {
 		Level level = livingEntity.level();
-		if (!level.isClientSide && livingEntity instanceof Player player && currentTask instanceof EatTask eatTask) {
+		if (!level.isClientSide() && livingEntity instanceof Player player && currentTask instanceof EatTask eatTask && !completedPlayers.contains(player.getUUID())) {
 			if (eatTask.matches(stack)) {
 				userCompletedTask((ServerLevel) level, player);
 			}
@@ -152,26 +153,28 @@ public class TaskHandler {
 
 	/**
 	 * Handles the completion of a task by a player.
+	 *
 	 * @param serverLevel the overworld level used for the scoreboard data
-	 * @param player the player who completed the task
+	 * @param player      the player who completed the task
 	 */
 	private static void userCompletedTask(ServerLevel serverLevel, Player player) {
-		UUID playerId = player.getGameProfile().getId();
+		UUID playerId = player.getGameProfile().id();
 		if (completedPlayers.contains(playerId)) {
 			return; // Player has already completed the task
 		}
-		LeaderboardData.incrementScore(serverLevel, player.getGameProfile().getId());
+		LeaderboardData.incrementScore(serverLevel, player.getGameProfile().id());
 		broadcastTaskCompletion(serverLevel, player, completeTime == -1L);
 		if (completeTime == -1L) {
 			completeTime = serverLevel.getGameTime();
 		}
-		completedPlayers.add(player.getGameProfile().getId());
+		completedPlayers.add(player.getGameProfile().id());
 	}
 
 	/**
 	 * Broadcasts a message to all players when a task is completed.
-	 * @param level the overworld server level
-	 * @param player the player who completed the task
+	 *
+	 * @param level     the overworld server level
+	 * @param player    the player who completed the task
 	 * @param firstTime true if this is the first time the task has been completed, false otherwise
 	 */
 	private static void broadcastTaskCompletion(ServerLevel level, Player player, boolean firstTime) {
@@ -181,7 +184,7 @@ public class TaskHandler {
 		}
 		MutableComponent component = Component.literal(String.format(completionMessage, player.getDisplayName().getString())).withStyle(ChatFormatting.YELLOW);
 
-		component.setStyle(component.getStyle().withHoverEvent(new HoverEvent(Action.SHOW_TEXT, getTaskDescription(currentTask))));
+		component.setStyle(component.getStyle().withHoverEvent(new HoverEvent.ShowText(getTaskDescription(currentTask))));
 		level.getServer().getPlayerList().broadcastSystemMessage(
 				component, false
 		);

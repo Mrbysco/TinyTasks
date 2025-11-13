@@ -5,7 +5,7 @@
   "package": "com.mrbysco.tinytasks.mixin",
   "target": "@env(DEFAULT)",
   "server": [
-    "LivingEntityMixin"
+    "FoodPropertiesMixin"
   ],
   "injectors": {
     "defaultRequire": 1

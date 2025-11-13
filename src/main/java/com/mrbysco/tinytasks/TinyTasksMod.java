@@ -21,6 +21,7 @@ public class TinyTasksMod {
 
 	/**
 	 * Creates a ResourceLocation with the mod ID as the namespace.
+	 *
 	 * @param path The path for the resource location, relative to the mod's namespace.
 	 * @return A ResourceLocation with the mod ID as the namespace and the provided path.
 	 */
