@@ -82,8 +82,6 @@ dependencies {
     compileOnly "mezz.jei:jei-${jei_minecraft}-neoforge-api:${jei_version}"
 
     localRuntime "mezz.jei:jei-${jei_minecraft}-neoforge:${jei_version}"
-
-//    compileOnly("com.blamejared.crafttweaker:CraftTweaker-neoforge-${mc_version}:${crafttweaker_version}")
 }
 
 jar {
