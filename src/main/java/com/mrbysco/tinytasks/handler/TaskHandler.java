@@ -58,6 +58,8 @@ public class TaskHandler {
 				component = component.append(getTaskDescription(currentTask));
 
 				for (ServerPlayer serverPlayer : server.getPlayerList().getPlayers()) {
+					if (completedPlayers.contains(serverPlayer.getUUID())) continue;
+
 					serverPlayer.displayClientMessage(
 							component, true
 					);
@@ -177,7 +179,7 @@ public class TaskHandler {
 		if (firstTime) {
 			completionMessage = "§6%s§r has completed the task first";
 		}
-		MutableComponent component = Component.literal(String.format(completionMessage, player.getDisplayName())).withStyle(ChatFormatting.YELLOW);
+		MutableComponent component = Component.literal(String.format(completionMessage, player.getDisplayName().getString())).withStyle(ChatFormatting.YELLOW);
 
 		component.setStyle(component.getStyle().withHoverEvent(new HoverEvent(Action.SHOW_TEXT, getTaskDescription(currentTask))));
 		level.getServer().getPlayerList().broadcastSystemMessage(
