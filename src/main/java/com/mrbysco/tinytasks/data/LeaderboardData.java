@@ -5,18 +5,19 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.mrbysco.tinytasks.TinyTasksMod;
 import net.minecraft.core.UUIDUtil;
+import net.minecraft.resources.Identifier;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.saveddata.SavedData;
 import net.minecraft.world.level.saveddata.SavedDataType;
-import net.minecraft.world.level.storage.DimensionDataStorage;
+import net.minecraft.world.level.storage.SavedDataStorage;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
 public class LeaderboardData extends SavedData {
-	private static final String DATA_NAME = TinyTasksMod.MOD_ID + "_scoreboard";
+	private static final Identifier DATA_NAME = TinyTasksMod.modLoc("leaderboard");
 
 	public static final Codec<LeaderboardData> CODEC = RecordCodecBuilder.create(inst -> inst.group(Codec.unboundedMap(UUIDUtil.STRING_CODEC, Codec.INT).fieldOf("scores").forGetter(data -> data.scoreMap)).apply(inst, LeaderboardData::new));
 
@@ -81,7 +82,7 @@ public class LeaderboardData extends SavedData {
 		ServerLevel overworld = level.getServer().getLevel(Level.OVERWORLD);
 
 		assert overworld != null;
-		DimensionDataStorage storage = overworld.getDataStorage();
+		SavedDataStorage storage = overworld.getDataStorage();
 		return storage.computeIfAbsent(type());
 	}
 }

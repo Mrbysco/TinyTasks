@@ -59,9 +59,7 @@ public class TaskHandler {
 				for (ServerPlayer serverPlayer : server.getPlayerList().getPlayers()) {
 					if (completedPlayers.contains(serverPlayer.getUUID())) continue;
 
-					serverPlayer.displayClientMessage(
-							component, true
-					);
+					serverPlayer.sendOverlayMessage(component);
 				}
 
 				if (!canHaveTask || (completeTime != -0L && serverLevel.getGameTime() - completeTime >= TASK_DURATION)) { // 30 seconds
