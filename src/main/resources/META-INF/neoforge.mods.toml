@@ -16,13 +16,13 @@ Adds a fun task system with a leaderboard
 [[dependencies.tinytasks]]
 modId="minecraft"
 type="required"
-versionRange="[1.21.10,1.22)"
+versionRange="[1.21.11,1.22)"
 ordering="NONE"
 side="BOTH"
 [[dependencies.tinytasks]]
 modId="neoforge"
 type="required"
-versionRange="[21.10.0-beta,)"
+versionRange="[21.11.0-beta,)"
 ordering="NONE"
 side="BOTH"
 [[mixins]]

@@ -12,7 +12,7 @@ import java.util.concurrent.CompletableFuture;
 @EventBusSubscriber
 public class TinyTaskDatagen {
 	@SubscribeEvent
-	public static void gatherData(GatherDataEvent.Server event) {
+	public static void gatherData(GatherDataEvent.Client event) {
 		DataGenerator generator = event.getGenerator();
 		PackOutput packOutput = generator.getPackOutput();
 		CompletableFuture<Provider> lookupProvider = event.getLookupProvider();

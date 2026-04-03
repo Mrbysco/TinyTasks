@@ -1,7 +1,6 @@
 package com.mrbysco.tinytasks.handler;
 
 import com.mrbysco.tinytasks.TaskRegistry;
-import com.mrbysco.tinytasks.TinyTasksMod;
 import com.mrbysco.tinytasks.data.LeaderboardData;
 import com.mrbysco.tinytasks.tasks.CraftTask;
 import com.mrbysco.tinytasks.tasks.EatTask;

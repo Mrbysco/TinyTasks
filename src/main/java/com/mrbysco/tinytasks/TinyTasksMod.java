@@ -1,7 +1,7 @@
 package com.mrbysco.tinytasks;
 
 import com.mojang.logging.LogUtils;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
@@ -20,12 +20,12 @@ public class TinyTasksMod {
 	}
 
 	/**
-	 * Creates a ResourceLocation with the mod ID as the namespace.
+	 * Creates an Identifier with the mod ID as the namespace.
 	 *
 	 * @param path The path for the resource location, relative to the mod's namespace.
-	 * @return A ResourceLocation with the mod ID as the namespace and the provided path.
+	 * @return An Identifier with the mod ID as the namespace and the provided path.
 	 */
-	public static ResourceLocation modLoc(String path) {
-		return ResourceLocation.fromNamespaceAndPath(MOD_ID, path);
+	public static Identifier modLoc(String path) {
+		return Identifier.fromNamespaceAndPath(MOD_ID, path);
 	}
 }
