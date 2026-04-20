@@ -26,7 +26,7 @@ import net.neoforged.neoforge.event.entity.living.LivingEntityUseItemEvent;
 import net.neoforged.neoforge.event.entity.living.LivingEquipmentChangeEvent;
 import net.neoforged.neoforge.event.entity.player.ItemEntityPickupEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent.ItemCraftedEvent;
-import net.neoforged.neoforge.event.level.BlockEvent.BreakEvent;
+import net.neoforged.neoforge.event.level.block.BreakBlockEvent;
 import net.neoforged.neoforge.event.tick.ServerTickEvent;
 
 import java.util.ArrayList;
@@ -123,7 +123,7 @@ public class TaskHandler {
 	}
 
 	@SubscribeEvent
-	public static void onUse(BreakEvent event) {
+	public static void onUse(BreakBlockEvent event) {
 		Player player = event.getPlayer();
 		Level level = player.level();
 		if (!level.isClientSide() && currentTask instanceof MineTask mineTask && !completedPlayers.contains(player.getUUID())) {
